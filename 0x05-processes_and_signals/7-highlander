@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# 7-highlander script: Display "To infinity and beyond" indefinitely, handle SIGTERM
+
+trap 'echo "I am invincible!!!"' SIGTERM  
+# Catch SIGTERM and print a custom message
+
+while true; do
+  echo "To infinity and beyond"
+  sleep 2
+done
