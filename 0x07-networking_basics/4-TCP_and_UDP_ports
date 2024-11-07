@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Display only listening sockets along with the PID and program name
+
+ss -tulnp
