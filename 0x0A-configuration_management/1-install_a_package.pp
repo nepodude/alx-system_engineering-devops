@@ -1,7 +1,5 @@
-#!/usr/bin/env puppet
-# This Puppet script installs Flask version 2.1.0 using pip3
-
-package { 'Flask':
-  ensure   => '2.1.0',
-  provider => 'pip3',
+# Install puppet-lint
+package { 'puppet-lint':
+  ensure   => '2.5.0',
+  provider => 'gem'
 }
