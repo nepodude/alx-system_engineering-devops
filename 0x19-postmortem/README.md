@@ -1,12 +1,37 @@
-Our service for sending money wasn't functional on 11th February 2025 from 13:21 EAT to 19:40 EAT due to a buggy file that was pushed on the platform on 11th February 2025 at 13:20 EAT. We detected it due to complaints of clients who attempted to send money and it showed a blank page instead.
-Time:
-. Time of detection:  11th Feb 2025 13:25 EAT
-. How we detected it: Through clients complaints.
-. Actions taken: Fixing platform backend.
-. Misleading paths: We thought the problem was frontend but later we realized it was indeed on the backend.
-. How we resolved the incident: We investigated all files contributing to the Backend side of the financial transaction of our platform and we found that the file that was pushed at 13:20 had a line of code that comfused the platform becuase it created multiple operations which made the server busy and not able to render the required information.
+Postmortem: Money Transfer Service Outage
+Issue Summary
+On February 11, 2025, from 13:21 EAT to 19:40 EAT, our money transfer service was non-functional due to a buggy backend file that was pushed to production at 13:20 EAT.
 
-We apologize to any inconveniances this might cause to our platform users. We have taken measures to ensure the realiablity of our platform in the future. We have taken the following measures:
+Impact:
+Users attempting to send money encountered a blank page instead of the transaction interface.
+100% of transactions were affected, causing financial delays and user frustration.
+Root Cause:
+A recently deployed backend file introduced a logic error that created multiple conflicting operations, overwhelming the server and preventing it from processing transactions correctly.
 
-. We have established a team of software engineers responsible to review the code before allowing it to take effect on our platform.
-. We have integrated AI that is responsible of running all our platforms tests for the pushed code to check for it's validity.
+Timeline of Events
+🕐 13:25 EAT – Clients reported blank screens when attempting transactions.
+🛠 13:30 EAT – Engineers initially suspected a frontend issue and reviewed the UI components.
+🔍 14:15 EAT – After frontend debugging, the issue persisted, indicating a backend problem.
+📝 15:00 EAT – Backend logs were analyzed, revealing server overload due to repeated operations from the new file.
+🚀 16:30 EAT – Engineers identified and tested a fix in the staging environment.
+✅ 19:40 EAT – A patched version was deployed, fully restoring services.
+Root Cause & Resolution
+🔍 What Went Wrong?
+A faulty backend update introduced an unintended loop, causing excessive processing requests.
+This overloaded the server, preventing transaction data from rendering properly.
+🛠 How It Was Fixed?
+Identified and removed the conflicting operations from the backend file.
+Deployed a patch that optimized transaction handling logic.
+Restarted affected servers and monitored performance to ensure stability.
+Corrective & Preventative Measures
+To prevent future incidents, we have implemented the following safeguards:
+
+✅ Pre-Deployment Code Reviews – A dedicated team of software engineers will review all code before deployment.
+✅ Automated AI Testing – Integrated an AI-based test system to scan for potential issues before deployment.
+✅ Stronger Monitoring Alerts – Set up real-time alerts for transaction failures and server overloads.
+✅ Rollback System – Developed a fast rollback mechanism for critical service failures.
+
+Final Thoughts 💡
+We sincerely apologize for the inconvenience caused and appreciate our users' patience. This incident has reinforced our commitment to ensuring reliability, fast resolutions, and continuous platform improvements.
+
+Thank you for trusting our service! 🚀
