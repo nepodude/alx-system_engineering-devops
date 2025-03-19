@@ -1,4 +1,5 @@
- #!/usr/bin/env bash
+#!/usr/bin/env bash
+# Description: Transfers a specified file to a remote server's home directory.
 
 # Check if exactly four arguments are provided
 if [ "$#" -ne 4 ]; then
@@ -6,7 +7,7 @@ if [ "$#" -ne 4 ]; then
   exit 1
 fi
 
-# Assign arguments to variables for better readability
+# Assign arguments to variables
 FILE_PATH="$1"
 SERVER_IP="$2"
 USERNAME="$3"
@@ -14,3 +15,6 @@ SSH_KEY_PATH="$4"
 
 # Perform the secure copy operation
 scp -i "$SSH_KEY_PATH" -o StrictHostKeyChecking=no "$FILE_PATH" "$USERNAME@$SERVER_IP:~/"
+
+# Restart the nginx service without using systemctl
+sudo service nginx restart
