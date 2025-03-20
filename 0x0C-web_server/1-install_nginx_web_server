@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
-# Installs and configures Nginx on an Ubuntu server
+# Installs and configures Nginx on an Ubuntu server to serve "Hello World!" on port 80
 
 # Update package lists and install Nginx
 apt-get -y update
 apt-get -y install nginx
 
-# Ensure Nginx starts and is enabled at boot
-service nginx start
-update-rc.d nginx defaults
-
 # Allow HTTP traffic on port 80
 ufw allow 'Nginx HTTP'
 
-# Replace the default Nginx HTML page with "Hello World!"
+# Start Nginx and enable it at boot
+service nginx start
+update-rc.d nginx defaults
+
+# Remove the default index file if it exists and create a new index.html with "Hello World!"
+rm -f /var/www/html/index.nginx-debian.html
 echo 'Hello World!' > /var/www/html/index.html
 
 # Restart Nginx to apply changes
