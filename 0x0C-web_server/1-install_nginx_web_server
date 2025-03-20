@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
-# installs nginx and configures it on a remote server
+# Installs and configures Nginx on an Ubuntu server
 
+# Update package lists and install Nginx
 apt-get -y update
 apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+
+# Ensure Nginx starts and is enabled at boot
 service nginx start
+update-rc.d nginx defaults
+
+# Allow HTTP traffic on port 80
+ufw allow 'Nginx HTTP'
+
+# Replace the default Nginx HTML page with "Hello World!"
+echo 'Hello World!' > /var/www/html/index.html
+
+# Restart Nginx to apply changes
+service nginx restart
