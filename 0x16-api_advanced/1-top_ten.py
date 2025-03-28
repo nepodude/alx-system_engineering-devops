@@ -10,8 +10,9 @@ def top_ten(subreddit):
     headers = {"User-Agent": "my_reddit_scraper/1.0"}
     params = {"limit": 10}  # Get only the first 10 posts
 
-    response = requests.get(url, headers=headers,
-    params=params, allow_redirects=False)
+    response = requests.get(
+        url, headers=headers,params=params, allow_redirects=False
+        )
 
     if response.status_code != 200:
         print(None)
