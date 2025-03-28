@@ -11,7 +11,7 @@ def top_ten(subreddit):
     params = {"limit": 10}  # Get only the first 10 posts
 
     response = requests.get(
-        url, headers=headers,params=params, allow_redirects=False
+        url, headers=headers, params=params, allow_redirects=False
         )
 
     if response.status_code != 200:
