@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+"""Goes through the subreddit to find how many things are there"""
+
 import requests
+
 
 def recurse(subreddit, hot_list=[], after=None):
     """Recursively fetches all hot post titles from a subreddit"""
