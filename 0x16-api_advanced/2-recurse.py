@@ -10,7 +10,9 @@ def recurse(subreddit, hot_list=[], after=None):
     headers = {"User-Agent": "custom-user-agent"}
     params = {"after": after, "limit": 100}  # Pagination handling
 
-    response = requests.get(url, headers=headers, params=params, allow_redirects=False)
+    response = requests.get(
+        url, headers=headers, params=params, allow_redirects=False
+        )
 
     if response.status_code != 200:
         return None
