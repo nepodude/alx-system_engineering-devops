@@ -9,13 +9,15 @@ def count_words(subreddit, word_list, word_count={}, after=None):
     headers = {"User-Agent": "custom-user-agent"}
     params = {"after": after, "limit": 100}
 
-    response = requests.get(url, headers=headers, params=params, allow_redirects=False)
+    response = requests.get(
+        url, headers=headers, params=params, allow_redirects=False
+        )
     if response.status_code != 200:
         return
 
     data = response.json().get("data", {})
     posts = data.get("children", [])
-    
+
     # Normalize word_list (case-insensitive and remove duplicates)
     word_list = [word.lower() for word in word_list]
 
@@ -26,7 +28,8 @@ def count_words(subreddit, word_list, word_count={}, after=None):
     for post in posts:
         title = post["data"]["title"].lower().split()
         for word in title:
-            cleaned_word = ''.join(filter(str.isalpha, word))  # Remove punctuation
+            cleaned_word = ''.join(filter(str.isalpha, word))
+            # Remove punctuation
             if cleaned_word in word_count:
                 word_count[cleaned_word] += 1
 
