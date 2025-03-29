@@ -1,12 +1,6 @@
-# This Puppet script fixes Apache 500 errors by correcting file permissions for WordPress.
+# automated puppet fix (to find out why Apache is returning a 500 error)
 
-exec { 'fix-wordpress-permissions':
-  command => 'chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html',
-  onlyif  => 'test -d /var/www/html',
-}
-
-service { 'apache2':
-  ensure  => 'running',
-  enable  => true,
-  require => Exec['fix-wordpress-permissions'],
+exec { 'Fix wordpress site':
+  command  => 'sudo sed -i "s/.phpp/.php/" /var/www/html/wp-settings.php',
+  provider => shell,
 }
