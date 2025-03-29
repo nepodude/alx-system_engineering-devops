@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 """a script for counting the words in a case insensitive way"""
 import requests
 
